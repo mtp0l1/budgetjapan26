@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japão Set/2026 — Painel Financeiro</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --s1: #111118;
+    --s2: #18181f;
+    --border: #22222e;
+    --border2: #2e2e3e;
+    --text: #e8e8f0;
+    --muted: #6b6b86;
+    --hint: #3a3a50;
+    --green: #4ade80;
+    --green-dim: #1a3d28;
+    --red: #f87171;
+    --red-dim: #3d1a1a;
+    --yellow: #fbbf24;
+    --yellow-dim: #3d3010;
+    --blue: #60a5fa;
+    --blue-dim: #1a2a3d;
+    --purple: #a78bfa;
+    --purple-dim: #2a1a3d;
+    --gold: #f59e0b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0 0 6rem;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding: 2rem 1.5rem 1.5rem;
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10,10,15,0.92);
+    backdrop-filter: blur(12px);
+  }
+  .header-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .header-title { font-size: 1rem; font-weight: 600; color: var(--text); }
+  .header-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .japan-budget-pill {
+    background: var(--green-dim);
+    border: 1px solid var(--green);
+    border-radius: 99px;
+    padding: .5rem 1.25rem;
+    display: flex; align-items: center; gap: .75rem;
+  }
+  .pill-label { font-size: 11px; color: var(--green); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+  .pill-value { font-family: 'Space Mono', monospace; font-size: 1.25rem; font-weight: 700; color: var(--green); }
+
+  /* ── LAYOUT ── */
+  .main { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 0; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 2.5rem; }
+  .section-label {
+    font-size: 10px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 1rem; display: flex; align-items: center; gap: .5rem;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ── JAPAN METER ── */
+  .meter-card {
+    background: var(--s1);
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .meter-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1rem; }
+  .meter-main { font-family: 'Space Mono', monospace; font-size: 2.5rem; font-weight: 700; color: var(--green); line-height: 1; }
+  .meter-label { font-size: 12px; color: var(--muted); margin-bottom: .25rem; }
+  .meter-secondary { text-align: right; }
+  .meter-secondary .val { font-family: 'Space Mono', monospace; font-size: 1rem; color: var(--yellow); }
+  .meter-secondary .lbl { font-size: 11px; color: var(--muted); }
+  .progress-bar { height: 6px; background: var(--s2); border-radius: 99px; overflow: hidden; margin-bottom: .75rem; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--green), #22d3ee); border-radius: 99px; transition: width .4s ease; }
+  .meter-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; }
+  .stat { background: var(--s2); border-radius: 10px; padding: .75rem; text-align: center; }
+  .stat .sv { font-family: 'Space Mono', monospace; font-size: .95rem; font-weight: 700; }
+  .stat .sl { font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+  /* ── ADD EXPENSE ── */
+  .add-card {
+    background: var(--s1);
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+  .add-title { font-size: .875rem; font-weight: 600; margin-bottom: 1rem; }
+  .input-row { display: flex; gap: .75rem; flex-wrap: wrap; }
+  .input-group { flex: 1; min-width: 140px; }
+  .input-group label { font-size: 11px; color: var(--muted); display: block; margin-bottom: .4rem; font-weight: 500; }
+  .input-group input, .input-group select {
+    width: 100%;
+    background: var(--s2);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    color: var(--text);
+    padding: .6rem .85rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: .875rem;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .input-group input:focus, .input-group select:focus { border-color: var(--purple); }
+  .input-group select option { background: var(--s2); }
+  .btn-add {
+    background: var(--purple);
+    color: #0a0a0f;
+    border: none;
+    border-radius: 8px;
+    padding: .6rem 1.25rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: .875rem;
+    font-weight: 700;
+    cursor: pointer;
+    align-self: flex-end;
+    white-space: nowrap;
+    transition: opacity .2s;
+  }
+  .btn-add:hover { opacity: .85; }
+
+  /* ── FATURA TRACKER ── */
+  .fatura-card {
+    background: var(--s1);
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+  .fatura-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: .75rem; }
+  .fatura-item { background: var(--s2); border-radius: 10px; padding: 1rem; }
+  .fatura-month { font-size: 11px; color: var(--muted); margin-bottom: .4rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+  .fatura-val { font-family: 'Space Mono', monospace; font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+  .fatura-input-wrap { position: relative; }
+  .fatura-input-wrap span { position: absolute; left: .6rem; top: 50%; transform: translateY(-50%); font-size: 11px; color: var(--muted); }
+  .fatura-input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    color: var(--text);
+    padding: .4rem .6rem .4rem 1.4rem;
+    font-family: 'Space Mono', monospace;
+    font-size: .8rem;
+    outline: none;
+  }
+  .fatura-input:focus { border-color: var(--yellow); }
+  .fatura-diff { font-size: 11px; margin-top: .35rem; }
+
+  /* ── LOG ── */
+  .log-list { display: flex; flex-direction: column; gap: .5rem; }
+  .log-item {
+    display: flex; align-items: center; gap: .75rem;
+    background: var(--s1);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: .7rem 1rem;
+    font-size: .875rem;
+  }
+  .log-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .log-desc { flex: 1; color: var(--text); }
+  .log-cat { font-size: 11px; color: var(--muted); }
+  .log-val { font-family: 'Space Mono', monospace; font-weight: 700; }
+  .log-val.neg { color: var(--red); }
+  .log-val.pos { color: var(--green); }
+  .log-del { background: none; border: none; color: var(--hint); cursor: pointer; font-size: 1rem; padding: 0 .25rem; transition: color .2s; }
+  .log-del:hover { color: var(--red); }
+  .log-empty { text-align: center; padding: 2rem; color: var(--muted); font-size: .875rem; }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; }
+  .tl-month { margin-bottom: 1.5rem; }
+  .tl-month-header {
+    display: flex; align-items: center; gap: .75rem;
+    margin-bottom: .75rem;
+  }
+  .tl-month-name { font-weight: 700; font-size: 1rem; }
+  .tl-badge {
+    font-size: 10px; font-weight: 700; padding: 2px 8px;
+    border-radius: 99px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  .badge-red { background: var(--red-dim); color: var(--red); }
+  .badge-yellow { background: var(--yellow-dim); color: var(--yellow); }
+  .badge-green { background: var(--green-dim); color: var(--green); }
+  .badge-blue { background: var(--blue-dim); color: var(--blue); }
+  .badge-purple { background: var(--purple-dim); color: var(--purple); }
+
+  .tl-rows { display: flex; flex-direction: column; gap: 3px; }
+  .tl-row {
+    display: flex; align-items: center; gap: .75rem;
+    padding: .55rem .85rem;
+    border-radius: 8px;
+    font-size: .8125rem;
+  }
+  .tl-row.in { background: rgba(74,222,128,.06); }
+  .tl-row.out { background: rgba(248,113,113,.06); }
+  .tl-row.neutral { background: var(--s1); }
+  .tl-row.highlight { background: rgba(167,139,250,.1); border: 1px solid rgba(167,139,250,.3); }
+  .tl-date { font-family: 'Space Mono', monospace; font-size: .7rem; color: var(--muted); min-width: 52px; }
+  .tl-desc { flex: 1; color: var(--text); }
+  .tl-amount { font-family: 'Space Mono', monospace; font-weight: 700; font-size: .8rem; min-width: 90px; text-align: right; }
+  .tl-amount.in { color: var(--green); }
+  .tl-amount.out { color: var(--red); }
+  .tl-amount.bal { color: var(--gold); }
+  .tl-amount.neutral { color: var(--muted); }
+  .tl-balance-row {
+    display: flex; justify-content: space-between;
+    padding: .6rem .85rem;
+    border-top: 1px solid var(--border);
+    margin-top: .35rem;
+    font-size: .8125rem;
+  }
+  .tl-balance-label { color: var(--muted); }
+  .tl-balance-val { font-family: 'Space Mono', monospace; font-weight: 700; color: var(--gold); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .meter-main { font-size: 1.75rem; }
+    .meter-stats { grid-template-columns: repeat(2, 1fr); }
+    .pill-value { font-size: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div>
+      <div class="header-title">🇯🇵 Japão Set/2026</div>
+      <div class="header-sub">Painel financeiro · atualizado em tempo real</div>
+    </div>
+    <div class="japan-budget-pill">
+      <span class="pill-label">Disponível</span>
+      <span class="pill-value" id="headerBudget">—</span>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+
+  <!-- SEÇÃO 1: ORÇAMENTO JAPÃO -->
+  <div class="section">
+    <div class="section-label">Orçamento para o Japão</div>
+
+    <div class="meter-card">
+      <div class="meter-row">
+        <div>
+          <div class="meter-label">Você pode gastar no Japão</div>
+          <div class="meter-main" id="budgetMain">R$ 0</div>
+        </div>
+        <div class="meter-secondary">
+          <div class="lbl">dos R$ 16.198 planejados</div>
+          <div class="val" id="budgetPercent">0%</div>
+        </div>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="budgetBar" style="width:0%"></div>
+      </div>
+      <div class="meter-stats">
+        <div class="stat">
+          <div class="sv" id="statBase" style="color:var(--blue)">R$ 16.198</div>
+          <div class="sl">base planejada</div>
+        </div>
+        <div class="stat">
+          <div class="sv" id="statSpent" style="color:var(--red)">R$ 0</div>
+          <div class="sl">gastos extras</div>
+        </div>
+        <div class="stat">
+          <div class="sv" id="statDays">16 dias</div>
+          <div class="sl">por dia disponível</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADD EXPENSE -->
+    <div class="add-card">
+      <div class="add-title">Registrar gasto ou receita extra</div>
+      <div class="input-row">
+        <div class="input-group">
+          <label>Tipo</label>
+          <select id="expType">
+            <option value="out">Gasto (−)</option>
+            <option value="in">Receita (+)</option>
+          </select>
+        </div>
+        <div class="input-group" style="flex:2">
+          <label>Descrição</label>
+          <input type="text" id="expDesc" placeholder="ex: remédio emergência" />
+        </div>
+        <div class="input-group">
+          <label>Valor (R$)</label>
+          <input type="number" id="expVal" placeholder="0,00" step="0.01" min="0" />
+        </div>
+        <div class="input-group">
+          <label>Categoria</label>
+          <select id="expCat">
+            <option value="emergencia">Emergência</option>
+            <option value="fatura">Fatura cartão</option>
+            <option value="transporte">Transporte</option>
+            <option value="alimentacao">Alimentação</option>
+            <option value="lazer">Lazer</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+        <button class="btn-add" onclick="addExpense()">+ Registrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 2: RASTREADOR DE FATURAS -->
+  <div class="section">
+    <div class="section-label">Faturas do cartão — acompanhe o aumento</div>
+    <div class="fatura-card">
+      <div style="font-size:.8125rem;color:var(--muted);margin-bottom:1rem;">
+        Toda vez que a fatura do Itaú aumentar, atualize aqui. O impacto no orçamento do Japão é calculado automaticamente.
+      </div>
+      <div class="fatura-grid" id="faturaGrid">
+        <!-- gerado por JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 3: LOG DE MOVIMENTAÇÕES -->
+  <div class="section">
+    <div class="section-label">Histórico de movimentações</div>
+    <div class="log-list" id="logList">
+      <div class="log-empty">Nenhum gasto registrado ainda.</div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 4: LINHA DO TEMPO -->
+  <div class="section">
+    <div class="section-label">Linha do tempo — julho a outubro</div>
+
+    <!-- JULHO -->
+    <div class="tl-month">
+      <div class="tl-month-header">
+        <span class="tl-month-name">Julho</span>
+        <span class="tl-badge badge-red">mês crítico — Itaú pesado</span>
+      </div>
+      <div class="tl-rows">
+        <div class="tl-row in"><span class="tl-date">01/jul</span><span class="tl-desc">+ Cofrinho + Salário</span><span class="tl-amount in">+ R$ 13.081</span></div>
+        <div class="tl-row out"><span class="tl-date">01/jul</span><span class="tl-desc">− Aluguel + Vivo</span><span class="tl-amount out">− R$ 1.849</span></div>
+        <div class="tl-row out"><span class="tl-date">02/jul</span><span class="tl-desc">− Entrada Itaú (parcelamento)</span><span class="tl-amount out">− R$ 9.000</span></div>
+        <div class="tl-row out"><span class="tl-date">06/jul</span><span class="tl-desc">− Nubank fatura junho</span><span class="tl-amount out">− R$ 532</span></div>
+        <div class="tl-row out"><span class="tl-date">~10/jul</span><span class="tl-desc">− Condomínio</span><span class="tl-amount out">− R$ 1.289</span></div>
+        <div class="tl-row in"><span class="tl-date">15/jul</span><span class="tl-desc">+ Adiantamento</span><span class="tl-amount in">+ R$ 6.190</span></div>
+        <div class="tl-row out"><span class="tl-date">~15/jul</span><span class="tl-desc">− Mercado Pago</span><span class="tl-amount out">− R$ 104</span></div>
+      </div>
+      <div class="tl-balance-row"><span class="tl-balance-label">Saldo fim de julho</span><span class="tl-balance-val">R$ 6.497</span></div>
+    </div>
+
+    <!-- AGOSTO -->
+    <div class="tl-month">
+      <div class="tl-month-header">
+        <span class="tl-month-name">Agosto</span>
+        <span class="tl-badge badge-yellow">casa dos pais — recuperação</span>
+      </div>
+      <div class="tl-rows">
+        <div class="tl-row in"><span class="tl-date">01/ago</span><span class="tl-desc">+ Salário</span><span class="tl-amount in">+ R$ 5.002</span></div>
+        <div class="tl-row out"><span class="tl-date">01/ago</span><span class="tl-desc">− Aluguel + Vivo</span><span class="tl-amount out">− R$ 1.849</span></div>
+        <div class="tl-row out"><span class="tl-date">04/ago</span><span class="tl-desc">− Nubank fatura julho</span><span class="tl-amount out">− R$ 424</span></div>
+        <div class="tl-row out"><span class="tl-date">~10/ago</span><span class="tl-desc">− Condomínio</span><span class="tl-amount out">− R$ 1.289</span></div>
+        <div class="tl-row in"><span class="tl-date">15/ago</span><span class="tl-desc">+ Adiantamento</span><span class="tl-amount in">+ R$ 6.190</span></div>
+        <div class="tl-row highlight"><span class="tl-date">15/ago</span><span class="tl-desc">⚡ Antecipar 4 parcelas Itaú (sem juros)</span><span class="tl-amount out">− R$ 4.645</span></div>
+        <div class="tl-row out"><span class="tl-date">~15/ago</span><span class="tl-desc">− Mercado Pago</span><span class="tl-amount out">− R$ 93</span></div>
+      </div>
+      <div class="tl-balance-row"><span class="tl-balance-label">Saldo fim de agosto</span><span class="tl-balance-val">R$ 9.389</span></div>
+    </div>
+
+    <!-- SETEMBRO -->
+    <div class="tl-month">
+      <div class="tl-month-header">
+        <span class="tl-month-name">Setembro</span>
+        <span class="tl-badge badge-purple">✈️ mês da viagem</span>
+      </div>
+      <div class="tl-rows">
+        <div class="tl-row in"><span class="tl-date">01/set</span><span class="tl-desc">+ Salário</span><span class="tl-amount in">+ R$ 5.002</span></div>
+        <div class="tl-row out"><span class="tl-date">01/set</span><span class="tl-desc">− Aluguel + Vivo</span><span class="tl-amount out">− R$ 1.849</span></div>
+        <div class="tl-row in"><span class="tl-date">~03/set</span><span class="tl-desc">+ Férias (20 dias + ⅓)</span><span class="tl-amount in">+ R$ 10.166</span></div>
+        <div class="tl-row in"><span class="tl-date">~03/set</span><span class="tl-desc">+ VR (pais devolvem)</span><span class="tl-amount in">+ R$ 2.000</span></div>
+        <div class="tl-row highlight"><span class="tl-date">04/set</span><span class="tl-desc">✈️ EMBARCA — saldo disponível para gastar</span><span class="tl-amount bal">R$ 24.708</span></div>
+        <div class="tl-row out"><span class="tl-date">04/set</span><span class="tl-desc">− Nubank fatura agosto (auto-débito)</span><span class="tl-amount out">− R$ 424</span></div>
+        <div class="tl-row out"><span class="tl-date">~10/set</span><span class="tl-desc">− Condomínio (auto-débito)</span><span class="tl-amount out">− R$ 1.289</span></div>
+        <div class="tl-row out"><span class="tl-date">~13/set</span><span class="tl-desc">− Mercado Pago (auto-débito)</span><span class="tl-amount out">− R$ 93</span></div>
+        <div class="tl-row in"><span class="tl-date">15/set</span><span class="tl-desc">+ Adiantamento reduzido</span><span class="tl-amount in">+ R$ 2.063</span></div>
+        <div class="tl-row out"><span class="tl-date">~16/set</span><span class="tl-desc">− Itaú setembro (gasto corrente)</span><span class="tl-amount out">− R$ 1.500</span></div>
+        <div class="tl-row highlight"><span class="tl-date">22/set</span><span class="tl-desc">🇧🇷 ATERRISSA — saldo ao voltar</span><span class="tl-amount bal">R$ 23.465</span></div>
+      </div>
+      <div class="tl-balance-row"><span class="tl-balance-label">Reservado para outubro</span><span class="tl-balance-val" style="color:var(--yellow)">− R$ 5.194</span></div>
+      <div class="tl-balance-row" style="border-top:none; padding-top:.25rem"><span class="tl-balance-label" style="font-weight:700;color:var(--text)">Livre para gastar no Japão</span><span class="tl-balance-val" style="color:var(--green);font-size:1rem">R$ 16.198</span></div>
+    </div>
+
+    <!-- OUTUBRO -->
+    <div class="tl-month">
+      <div class="tl-month-header">
+        <span class="tl-month-name">Outubro</span>
+        <span class="tl-badge badge-green">volta ao normal — cobre sozinho</span>
+      </div>
+      <div class="tl-rows">
+        <div class="tl-row in"><span class="tl-date">01/out</span><span class="tl-desc">+ Salário (parcial — férias)</span><span class="tl-amount in">+ R$ 2.700</span></div>
+        <div class="tl-row out"><span class="tl-date">01/out</span><span class="tl-desc">− Aluguel + Vivo</span><span class="tl-amount out">− R$ 1.849</span></div>
+        <div class="tl-row out"><span class="tl-date">~05/out</span><span class="tl-desc">− Nubank fatura setembro</span><span class="tl-amount out">− R$ 328</span></div>
+        <div class="tl-row out"><span class="tl-date">~10/out</span><span class="tl-desc">− Condomínio</span><span class="tl-amount out">− R$ 1.289</span></div>
+        <div class="tl-row in"><span class="tl-date">15/out</span><span class="tl-desc">+ Adiantamento</span><span class="tl-amount in">+ R$ 6.190</span></div>
+        <div class="tl-row out"><span class="tl-date">~16/out</span><span class="tl-desc">− Itaú outubro</span><span class="tl-amount out">− R$ 1.635</span></div>
+        <div class="tl-row out"><span class="tl-date">~16/out</span><span class="tl-desc">− Mercado Pago</span><span class="tl-amount out">− R$ 93</span></div>
+      </div>
+      <div class="tl-balance-row"><span class="tl-balance-label">Outubro se paga sozinho — não precisa reservar do Japão</span><span class="tl-balance-val" style="color:var(--green)">✓</span></div>
+    </div>
+
+  </div>
+
+</main>
+
+<script>
+const BASE_BUDGET = 16198;
+const TRIP_DAYS = 16;
+
+// Faturas a rastrear
+const FATURAS = [
+  { id: 'itau_jul', label: 'Itaú Julho', base: 13671.75, vence: '02/jul', color: 'var(--red)' },
+  { id: 'itau_ago', label: 'Itaú Agosto', base: 3666.06, vence: '16/ago', color: 'var(--yellow)' },
+  { id: 'itau_set', label: 'Itaú Setembro', base: 3011.63, vence: '16/set', color: 'var(--yellow)' },
+  { id: 'nubank_jul', label: 'Nubank Julho', base: 423.85, vence: '04/ago', color: 'var(--purple)' },
+  { id: 'nubank_ago', label: 'Nubank Agosto', base: 423.85, vence: '04/set', color: 'var(--purple)' },
+];
+
+const CAT_COLORS = {
+  emergencia: 'var(--red)',
+  fatura: 'var(--yellow)',
+  transporte: 'var(--blue)',
+  alimentacao: 'var(--green)',
+  lazer: 'var(--purple)',
+  outro: 'var(--muted)',
+};
+
+function load(key, def) {
+  try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : def; }
+  catch { return def; }
+}
+function save(key, val) {
+  try { localStorage.setItem(key, JSON.stringify(val)); } catch {}
+}
+
+let expenses = load('jp_expenses', []);
+let faturaValues = load('jp_faturas', {});
+
+function totalExpenses() {
+  return expenses.reduce((s, e) => e.type === 'out' ? s + e.val : s - e.val, 0);
+}
+
+function totalFaturaExtra() {
+  return FATURAS.reduce((s, f) => {
+    const current = faturaValues[f.id] ?? f.base;
+    const diff = current - f.base;
+    return diff > 0 ? s + diff : s;
+  }, 0);
+}
+
+function currentBudget() {
+  return BASE_BUDGET - totalExpenses() - totalFaturaExtra();
+}
+
+function fmt(n) {
+  return 'R$ ' + Math.abs(n).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function updateUI() {
+  const budget = currentBudget();
+  const pct = Math.max(0, Math.min(100, (budget / BASE_BUDGET) * 100));
+  const perDay = budget / TRIP_DAYS;
+
+  document.getElementById('headerBudget').textContent = fmt(budget);
+  document.getElementById('budgetMain').textContent = fmt(budget);
+  document.getElementById('budgetMain').style.color = budget > 10000 ? 'var(--green)' : budget > 5000 ? 'var(--yellow)' : 'var(--red)';
+  document.getElementById('budgetPercent').textContent = pct.toFixed(0) + '%';
+  document.getElementById('budgetBar').style.width = pct + '%';
+  document.getElementById('statSpent').textContent = fmt(totalExpenses() + totalFaturaExtra());
+  document.getElementById('statDays').textContent = fmt(perDay) + '/dia';
+
+  // Log
+  const logEl = document.getElementById('logList');
+  if (expenses.length === 0) {
+    logEl.innerHTML = '<div class="log-empty">Nenhum gasto registrado ainda.</div>';
+  } else {
+    logEl.innerHTML = [...expenses].reverse().map(e => `
+      <div class="log-item">
+        <div class="log-dot" style="background:${CAT_COLORS[e.cat] || 'var(--muted)'}"></div>
+        <div style="flex:1">
+          <div class="log-desc">${e.desc}</div>
+          <div class="log-cat">${e.cat} · ${e.date}</div>
+        </div>
+        <div class="log-val ${e.type === 'out' ? 'neg' : 'pos'}">${e.type === 'out' ? '−' : '+'} ${fmt(e.val)}</div>
+        <button class="log-del" onclick="removeExpense('${e.id}')">✕</button>
+      </div>
+    `).join('');
+  }
+
+  // Faturas
+  const grid = document.getElementById('faturaGrid');
+  grid.innerHTML = FATURAS.map(f => {
+    const current = faturaValues[f.id] ?? f.base;
+    const diff = current - f.base;
+    const diffStr = diff > 0 ? `<span style="color:var(--red)">+ ${fmt(diff)} do esperado</span>` :
+                    diff < 0 ? `<span style="color:var(--green)">${fmt(diff)} do esperado</span>` :
+                    `<span style="color:var(--muted)">sem alteração</span>`;
+    return `
+      <div class="fatura-item">
+        <div class="fatura-month">${f.label}</div>
+        <div class="fatura-val" style="color:${f.color}">${fmt(current)}</div>
+        <div style="font-size:10px;color:var(--muted);margin-bottom:.5rem">vence ${f.vence}</div>
+        <div class="fatura-input-wrap">
+          <span>R$</span>
+          <input class="fatura-input" type="number" step="0.01"
+            value="${current.toFixed(2)}"
+            onchange="updateFatura('${f.id}', this.value)"
+            placeholder="${f.base.toFixed(2)}" />
+        </div>
+        <div class="fatura-diff">${diffStr}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function addExpense() {
+  const type = document.getElementById('expType').value;
+  const desc = document.getElementById('expDesc').value.trim();
+  const val = parseFloat(document.getElementById('expVal').value);
+  const cat = document.getElementById('expCat').value;
+
+  if (!desc || isNaN(val) || val <= 0) {
+    alert('Preenche a descrição e um valor válido.');
+    return;
+  }
+
+  expenses.push({
+    id: Date.now().toString(),
+    type, desc, val, cat,
+    date: new Date().toLocaleDateString('pt-BR')
+  });
+
+  save('jp_expenses', expenses);
+  document.getElementById('expDesc').value = '';
+  document.getElementById('expVal').value = '';
+  updateUI();
+}
+
+function removeExpense(id) {
+  expenses = expenses.filter(e => e.id !== id);
+  save('jp_expenses', expenses);
+  updateUI();
+}
+
+function updateFatura(id, val) {
+  const n = parseFloat(val);
+  if (!isNaN(n) && n >= 0) {
+    faturaValues[id] = n;
+    save('jp_faturas', faturaValues);
+    updateUI();
+  }
+}
+
+updateUI();
+</script>
+</body>
+</html>
