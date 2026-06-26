@@ -39,31 +39,29 @@
     padding: 0 0 6rem;
   }
 
-  /* ── HEADER ── */
+  /* HEADER */
   .header {
     border-bottom: 1px solid var(--border);
-    padding: 2rem 1.5rem 1.5rem;
+    padding: 1.25rem 1.5rem;
     position: sticky; top: 0; z-index: 50;
-    background: rgba(10,10,15,0.92);
+    background: rgba(10,10,15,0.95);
     backdrop-filter: blur(12px);
   }
-  .header-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
-  .header-title { font-size: 1rem; font-weight: 600; color: var(--text); }
-  .header-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .japan-budget-pill {
+  .header-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .header-title { font-size: .9375rem; font-weight: 700; }
+  .header-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .budget-pill {
     background: var(--green-dim);
-    border: 1px solid var(--green);
+    border: 1px solid rgba(74,222,128,.4);
     border-radius: 99px;
     padding: .5rem 1.25rem;
     display: flex; align-items: center; gap: .75rem;
   }
-  .pill-label { font-size: 11px; color: var(--green); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
-  .pill-value { font-family: 'Space Mono', monospace; font-size: 1.25rem; font-weight: 700; color: var(--green); }
+  .pill-label { font-size: 10px; color: var(--green); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+  .pill-value { font-family: 'Space Mono', monospace; font-size: 1.1rem; font-weight: 700; color: var(--green); }
 
-  /* ── LAYOUT ── */
-  .main { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 0; }
-
-  /* ── SECTION ── */
+  /* LAYOUT */
+  .main { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 0; }
   .section { margin-bottom: 2.5rem; }
   .section-label {
     font-size: 10px; font-weight: 700; letter-spacing: .14em;
@@ -72,508 +70,580 @@
   }
   .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-  /* ── JAPAN METER ── */
+  /* BUDGET METER */
   .meter-card {
-    background: var(--s1);
-    border: 1px solid var(--border2);
-    border-radius: 16px;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
+    background: var(--s1); border: 1px solid var(--border2);
+    border-radius: 16px; padding: 1.5rem; margin-bottom: 1rem;
   }
-  .meter-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1rem; }
-  .meter-main { font-family: 'Space Mono', monospace; font-size: 2.5rem; font-weight: 700; color: var(--green); line-height: 1; }
-  .meter-label { font-size: 12px; color: var(--muted); margin-bottom: .25rem; }
-  .meter-secondary { text-align: right; }
-  .meter-secondary .val { font-family: 'Space Mono', monospace; font-size: 1rem; color: var(--yellow); }
-  .meter-secondary .lbl { font-size: 11px; color: var(--muted); }
-  .progress-bar { height: 6px; background: var(--s2); border-radius: 99px; overflow: hidden; margin-bottom: .75rem; }
-  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--green), #22d3ee); border-radius: 99px; transition: width .4s ease; }
-  .meter-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; }
+  .meter-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1rem; flex-wrap: wrap; gap: .5rem; }
+  .meter-big { font-family: 'Space Mono', monospace; font-size: 2.75rem; font-weight: 700; line-height: 1; }
+  .meter-lbl { font-size: 12px; color: var(--muted); margin-bottom: .3rem; }
+  .meter-right { text-align: right; }
+  .meter-right .v { font-family: 'Space Mono', monospace; font-size: .95rem; }
+  .meter-right .l { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .bar { height: 5px; background: var(--s2); border-radius: 99px; overflow: hidden; margin-bottom: 1rem; }
+  .bar-fill { height: 100%; border-radius: 99px; transition: width .5s ease, background .3s; }
+  .stats3 { display: grid; grid-template-columns: repeat(3,1fr); gap: .75rem; }
   .stat { background: var(--s2); border-radius: 10px; padding: .75rem; text-align: center; }
-  .stat .sv { font-family: 'Space Mono', monospace; font-size: .95rem; font-weight: 700; }
-  .stat .sl { font-size: 10px; color: var(--muted); margin-top: 2px; }
+  .stat .sv { font-family: 'Space Mono', monospace; font-size: .875rem; font-weight: 700; }
+  .stat .sl { font-size: 10px; color: var(--muted); margin-top: 3px; }
 
-  /* ── ADD EXPENSE ── */
-  .add-card {
-    background: var(--s1);
-    border: 1px solid var(--border2);
-    border-radius: 16px;
-    padding: 1.5rem;
+  /* FATURAS GRID */
+  .faturas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: .75rem;
   }
-  .add-title { font-size: .875rem; font-weight: 600; margin-bottom: 1rem; }
-  .input-row { display: flex; gap: .75rem; flex-wrap: wrap; }
-  .input-group { flex: 1; min-width: 140px; }
-  .input-group label { font-size: 11px; color: var(--muted); display: block; margin-bottom: .4rem; font-weight: 500; }
-  .input-group input, .input-group select {
-    width: 100%;
-    background: var(--s2);
-    border: 1px solid var(--border2);
-    border-radius: 8px;
-    color: var(--text);
-    padding: .6rem .85rem;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: .875rem;
-    outline: none;
+  .fatura-card {
+    background: var(--s1); border: 1px solid var(--border2);
+    border-radius: 12px; padding: 1rem;
     transition: border-color .2s;
   }
-  .input-group input:focus, .input-group select:focus { border-color: var(--purple); }
-  .input-group select option { background: var(--s2); }
-  .btn-add {
-    background: var(--purple);
-    color: #0a0a0f;
-    border: none;
-    border-radius: 8px;
-    padding: .6rem 1.25rem;
+  .fatura-card:hover { border-color: var(--border); }
+  .fatura-month { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: .35rem; }
+  .fatura-total { font-family: 'Space Mono', monospace; font-size: 1.125rem; font-weight: 700; margin-bottom: .15rem; }
+  .fatura-vence { font-size: 10px; color: var(--hint); margin-bottom: .6rem; }
+  .fatura-base { font-size: 10px; color: var(--muted); margin-bottom: .5rem; }
+  .fatura-diff { font-size: 11px; font-weight: 600; margin-bottom: .6rem; min-height: 16px; }
+  .fatura-breakdown { border-top: 1px solid var(--border); padding-top: .5rem; display: flex; flex-direction: column; gap: 3px; }
+  .fatura-item-line { display: flex; justify-content: space-between; font-size: 10px; }
+  .fatura-item-name { color: var(--muted); flex: 1; margin-right: .5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .fatura-item-val { font-family: 'Space Mono', monospace; color: var(--yellow); flex-shrink: 0; }
+
+  /* TABS */
+  .tabs { display: flex; gap: .5rem; margin-bottom: 1rem; }
+  .tab-btn {
+    background: var(--s2); border: 1px solid var(--border2);
+    border-radius: 8px; padding: .5rem 1rem;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: .875rem;
-    font-weight: 700;
-    cursor: pointer;
-    align-self: flex-end;
-    white-space: nowrap;
+    font-size: .8125rem; font-weight: 600;
+    color: var(--muted); cursor: pointer;
+    transition: all .2s;
+  }
+  .tab-btn.active { background: var(--purple-dim); border-color: var(--purple); color: var(--purple); }
+
+  /* FORM CARDS */
+  .form-card {
+    background: var(--s1); border: 1px solid var(--border2);
+    border-radius: 16px; padding: 1.5rem;
+    display: none;
+  }
+  .form-card.active { display: block; }
+  .form-title { font-size: .875rem; font-weight: 600; margin-bottom: .35rem; }
+  .form-desc { font-size: .8125rem; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.5; }
+  .form-row { display: flex; gap: .75rem; flex-wrap: wrap; align-items: flex-end; }
+  .fg { flex: 1; min-width: 120px; }
+  .fg label { font-size: 11px; color: var(--muted); display: block; margin-bottom: .4rem; font-weight: 600; }
+  .fg input, .fg select {
+    width: 100%;
+    background: var(--s2); border: 1px solid var(--border2);
+    border-radius: 8px; color: var(--text);
+    padding: .6rem .85rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: .875rem; outline: none;
+    transition: border-color .2s;
+  }
+  .fg input:focus, .fg select:focus { border-color: var(--purple); }
+  .fg select option { background: var(--s2); }
+  .btn {
+    border: none; border-radius: 8px;
+    padding: .65rem 1.25rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: .875rem; font-weight: 700;
+    cursor: pointer; white-space: nowrap;
     transition: opacity .2s;
   }
-  .btn-add:hover { opacity: .85; }
+  .btn:hover { opacity: .85; }
+  .btn-primary { background: var(--purple); color: #0a0a0f; }
+  .btn-secondary { background: var(--s2); border: 1px solid var(--border2); color: var(--text); }
 
-  /* ── FATURA TRACKER ── */
-  .fatura-card {
-    background: var(--s1);
-    border: 1px solid var(--border2);
-    border-radius: 16px;
-    padding: 1.5rem;
+  /* PARCELAMENTO PREVIEW */
+  .parcela-preview {
+    background: var(--s2); border-radius: 10px;
+    padding: 1rem; margin-top: 1rem;
+    display: none;
   }
-  .fatura-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: .75rem; }
-  .fatura-item { background: var(--s2); border-radius: 10px; padding: 1rem; }
-  .fatura-month { font-size: 11px; color: var(--muted); margin-bottom: .4rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
-  .fatura-val { font-family: 'Space Mono', monospace; font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
-  .fatura-input-wrap { position: relative; }
-  .fatura-input-wrap span { position: absolute; left: .6rem; top: 50%; transform: translateY(-50%); font-size: 11px; color: var(--muted); }
-  .fatura-input {
-    width: 100%;
-    background: var(--bg);
-    border: 1px solid var(--border2);
-    border-radius: 6px;
-    color: var(--text);
-    padding: .4rem .6rem .4rem 1.4rem;
-    font-family: 'Space Mono', monospace;
-    font-size: .8rem;
-    outline: none;
-  }
-  .fatura-input:focus { border-color: var(--yellow); }
-  .fatura-diff { font-size: 11px; margin-top: .35rem; }
+  .parcela-preview.show { display: block; }
+  .parcela-preview-title { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .6rem; }
+  .parcela-rows { display: flex; flex-direction: column; gap: 4px; }
+  .parcela-row { display: flex; justify-content: space-between; font-size: .8125rem; }
+  .parcela-row .pm { color: var(--muted); }
+  .parcela-row .pv { font-family: 'Space Mono', monospace; color: var(--yellow); }
 
-  /* ── LOG ── */
+  /* LOG */
   .log-list { display: flex; flex-direction: column; gap: .5rem; }
   .log-item {
     display: flex; align-items: center; gap: .75rem;
-    background: var(--s1);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: .7rem 1rem;
-    font-size: .875rem;
+    background: var(--s1); border: 1px solid var(--border);
+    border-radius: 10px; padding: .7rem 1rem;
+    font-size: .8125rem;
   }
   .log-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .log-desc { flex: 1; color: var(--text); }
-  .log-cat { font-size: 11px; color: var(--muted); }
-  .log-val { font-family: 'Space Mono', monospace; font-weight: 700; }
+  .log-body { flex: 1; }
+  .log-name { color: var(--text); }
+  .log-meta { font-size: 10px; color: var(--muted); margin-top: 2px; }
+  .log-right { text-align: right; flex-shrink: 0; }
+  .log-val { font-family: 'Space Mono', monospace; font-weight: 700; font-size: .875rem; }
   .log-val.neg { color: var(--red); }
   .log-val.pos { color: var(--green); }
-  .log-del { background: none; border: none; color: var(--hint); cursor: pointer; font-size: 1rem; padding: 0 .25rem; transition: color .2s; }
+  .log-impact { font-size: 10px; color: var(--muted); margin-top: 2px; }
+  .log-del { background: none; border: none; color: var(--hint); cursor: pointer; font-size: 1rem; padding: 0 .25rem; margin-left: .5rem; transition: color .2s; flex-shrink: 0; }
   .log-del:hover { color: var(--red); }
   .log-empty { text-align: center; padding: 2rem; color: var(--muted); font-size: .875rem; }
 
-  /* ── TIMELINE ── */
-  .timeline { position: relative; }
+  /* TIMELINE */
   .tl-month { margin-bottom: 1.5rem; }
-  .tl-month-header {
-    display: flex; align-items: center; gap: .75rem;
-    margin-bottom: .75rem;
-  }
-  .tl-month-name { font-weight: 700; font-size: 1rem; }
-  .tl-badge {
-    font-size: 10px; font-weight: 700; padding: 2px 8px;
-    border-radius: 99px; letter-spacing: .06em; text-transform: uppercase;
-  }
+  .tl-month-header { display: flex; align-items: center; gap: .75rem; margin-bottom: .75rem; }
+  .tl-month-name { font-weight: 700; font-size: .9375rem; }
+  .tl-badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 99px; letter-spacing: .06em; text-transform: uppercase; }
   .badge-red { background: var(--red-dim); color: var(--red); }
   .badge-yellow { background: var(--yellow-dim); color: var(--yellow); }
   .badge-green { background: var(--green-dim); color: var(--green); }
-  .badge-blue { background: var(--blue-dim); color: var(--blue); }
   .badge-purple { background: var(--purple-dim); color: var(--purple); }
-
   .tl-rows { display: flex; flex-direction: column; gap: 3px; }
-  .tl-row {
-    display: flex; align-items: center; gap: .75rem;
-    padding: .55rem .85rem;
-    border-radius: 8px;
-    font-size: .8125rem;
-  }
-  .tl-row.in { background: rgba(74,222,128,.06); }
-  .tl-row.out { background: rgba(248,113,113,.06); }
+  .tl-row { display: flex; align-items: center; gap: .75rem; padding: .5rem .85rem; border-radius: 8px; font-size: .8rem; }
+  .tl-row.in { background: rgba(74,222,128,.05); }
+  .tl-row.out { background: rgba(248,113,113,.05); }
   .tl-row.neutral { background: var(--s1); }
-  .tl-row.highlight { background: rgba(167,139,250,.1); border: 1px solid rgba(167,139,250,.3); }
-  .tl-date { font-family: 'Space Mono', monospace; font-size: .7rem; color: var(--muted); min-width: 52px; }
-  .tl-desc { flex: 1; color: var(--text); }
-  .tl-amount { font-family: 'Space Mono', monospace; font-weight: 700; font-size: .8rem; min-width: 90px; text-align: right; }
-  .tl-amount.in { color: var(--green); }
-  .tl-amount.out { color: var(--red); }
-  .tl-amount.bal { color: var(--gold); }
-  .tl-amount.neutral { color: var(--muted); }
-  .tl-balance-row {
-    display: flex; justify-content: space-between;
-    padding: .6rem .85rem;
-    border-top: 1px solid var(--border);
-    margin-top: .35rem;
-    font-size: .8125rem;
-  }
-  .tl-balance-label { color: var(--muted); }
-  .tl-balance-val { font-family: 'Space Mono', monospace; font-weight: 700; color: var(--gold); }
+  .tl-row.hl { background: rgba(167,139,250,.1); border: 1px solid rgba(167,139,250,.25); }
+  .tl-date { font-family: 'Space Mono', monospace; font-size: .7rem; color: var(--muted); min-width: 56px; }
+  .tl-desc { flex: 1; }
+  .tl-amt { font-family: 'Space Mono', monospace; font-weight: 700; font-size: .775rem; min-width: 90px; text-align: right; }
+  .tl-amt.in { color: var(--green); }
+  .tl-amt.out { color: var(--red); }
+  .tl-amt.bal { color: var(--gold); }
+  .tl-footer { display: flex; justify-content: space-between; padding: .6rem .85rem; border-top: 1px solid var(--border); margin-top: .35rem; font-size: .8rem; }
+  .tl-footer-lbl { color: var(--muted); }
+  .tl-footer-val { font-family: 'Space Mono', monospace; font-weight: 700; color: var(--gold); }
 
-  /* ── RESPONSIVE ── */
   @media (max-width: 600px) {
-    .meter-main { font-size: 1.75rem; }
-    .meter-stats { grid-template-columns: repeat(2, 1fr); }
-    .pill-value { font-size: 1rem; }
+    .meter-big { font-size: 2rem; }
+    .stats3 { grid-template-columns: repeat(2,1fr); }
+    .pill-value { font-size: .95rem; }
   }
 </style>
 </head>
 <body>
 
-<!-- STICKY HEADER -->
 <header class="header">
   <div class="header-inner">
     <div>
       <div class="header-title">🇯🇵 Japão Set/2026</div>
-      <div class="header-sub">Painel financeiro · atualizado em tempo real</div>
+      <div class="header-sub">Painel financeiro · tempo real</div>
     </div>
-    <div class="japan-budget-pill">
-      <span class="pill-label">Disponível</span>
-      <span class="pill-value" id="headerBudget">—</span>
+    <div class="budget-pill">
+      <span class="pill-label">Para o Japão</span>
+      <span class="pill-value" id="hBudget">—</span>
     </div>
   </div>
 </header>
 
 <main class="main">
 
-  <!-- SEÇÃO 1: ORÇAMENTO JAPÃO -->
+  <!-- ORÇAMENTO -->
   <div class="section">
-    <div class="section-label">Orçamento para o Japão</div>
-
+    <div class="section-label">Orçamento do Japão</div>
     <div class="meter-card">
-      <div class="meter-row">
+      <div class="meter-top">
         <div>
-          <div class="meter-label">Você pode gastar no Japão</div>
-          <div class="meter-main" id="budgetMain">R$ 0</div>
+          <div class="meter-lbl">Disponível para gastar no Japão</div>
+          <div class="meter-big" id="budgetBig">R$ 0</div>
         </div>
-        <div class="meter-secondary">
-          <div class="lbl">dos R$ 16.198 planejados</div>
-          <div class="val" id="budgetPercent">0%</div>
+        <div class="meter-right">
+          <div class="v" id="budgetPct" style="color:var(--green)">0%</div>
+          <div class="l">do planejado (R$ 16.198)</div>
         </div>
       </div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="budgetBar" style="width:0%"></div>
-      </div>
-      <div class="meter-stats">
+      <div class="bar"><div class="bar-fill" id="budgetBar" style="width:0%"></div></div>
+      <div class="stats3">
         <div class="stat">
-          <div class="sv" id="statBase" style="color:var(--blue)">R$ 16.198</div>
-          <div class="sl">base planejada</div>
+          <div class="sv" style="color:var(--red)" id="sTotalImpact">R$ 0</div>
+          <div class="sl">impacto total</div>
         </div>
         <div class="stat">
-          <div class="sv" id="statSpent" style="color:var(--red)">R$ 0</div>
-          <div class="sl">gastos extras</div>
+          <div class="sv" style="color:var(--yellow)" id="sPerDay">R$ 0/dia</div>
+          <div class="sl">por dia (16 dias)</div>
         </div>
         <div class="stat">
-          <div class="sv" id="statDays">16 dias</div>
-          <div class="sl">por dia disponível</div>
+          <div class="sv" style="color:var(--blue)" id="sYen">¥ 0</div>
+          <div class="sl">em ienes (~R$0,034)</div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- ADD EXPENSE -->
-    <div class="add-card">
-      <div class="add-title">Registrar gasto ou receita extra</div>
-      <div class="input-row">
-        <div class="input-group">
-          <label>Tipo</label>
-          <select id="expType">
-            <option value="out">Gasto (−)</option>
-            <option value="in">Receita (+)</option>
-          </select>
-        </div>
-        <div class="input-group" style="flex:2">
+  <!-- FATURAS -->
+  <div class="section">
+    <div class="section-label">Faturas — impacto por mês</div>
+    <div class="faturas-grid" id="faturasGrid"></div>
+  </div>
+
+  <!-- ADICIONAR -->
+  <div class="section">
+    <div class="section-label">Registrar gasto</div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('parcela')">🛒 Compra parcelada</button>
+      <button class="tab-btn" onclick="switchTab('avulso')">💸 Gasto avulso (débito/pix)</button>
+    </div>
+
+    <!-- TAB: PARCELADA -->
+    <div class="form-card active" id="tabParcela">
+      <div class="form-title">Compra parcelada no cartão</div>
+      <div class="form-desc">Cada parcela é distribuída automaticamente nas faturas corretas (a partir do mês que você escolher). O impacto total é descontado do orçamento do Japão.</div>
+      <div class="form-row">
+        <div class="fg" style="flex:2">
           <label>Descrição</label>
-          <input type="text" id="expDesc" placeholder="ex: remédio emergência" />
+          <input type="text" id="pDesc" placeholder="ex: hospedagem Kyoto" />
         </div>
-        <div class="input-group">
-          <label>Valor (R$)</label>
-          <input type="number" id="expVal" placeholder="0,00" step="0.01" min="0" />
+        <div class="fg">
+          <label>Valor total (R$)</label>
+          <input type="number" id="pTotal" placeholder="0,00" step="0.01" min="0" oninput="previewParcela()" />
         </div>
-        <div class="input-group">
-          <label>Categoria</label>
-          <select id="expCat">
-            <option value="emergencia">Emergência</option>
-            <option value="fatura">Fatura cartão</option>
-            <option value="transporte">Transporte</option>
-            <option value="alimentacao">Alimentação</option>
-            <option value="lazer">Lazer</option>
-            <option value="outro">Outro</option>
+        <div class="fg">
+          <label>Nº de parcelas</label>
+          <select id="pQtd" onchange="previewParcela()">
+            <option value="1">1x (à vista)</option>
+            <option value="2">2x</option>
+            <option value="3">3x</option>
+            <option value="4">4x</option>
+            <option value="6">6x</option>
+            <option value="8">8x</option>
+            <option value="10">10x</option>
+            <option value="12">12x</option>
           </select>
         </div>
-        <button class="btn-add" onclick="addExpense()">+ Registrar</button>
+        <div class="fg">
+          <label>1ª parcela em</label>
+          <select id="pMes" onchange="previewParcela()">
+            <option value="jul">Julho</option>
+            <option value="ago">Agosto</option>
+            <option value="set">Setembro</option>
+            <option value="out">Outubro</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" onclick="addParcela()">+ Adicionar</button>
+      </div>
+      <div class="parcela-preview" id="parcelaPreview">
+        <div class="parcela-preview-title">Prévia — como vai cair nas faturas</div>
+        <div class="parcela-rows" id="parcelaRows"></div>
+      </div>
+    </div>
+
+    <!-- TAB: AVULSO -->
+    <div class="form-card" id="tabAvulso">
+      <div class="form-title">Gasto fora do cartão</div>
+      <div class="form-desc">Use para gastos no débito, pix ou dinheiro — que <strong>não vão aparecer em nenhuma fatura</strong>. Desconta direto do orçamento do Japão.</div>
+      <div class="form-row">
+        <div class="fg" style="flex:2">
+          <label>Descrição</label>
+          <input type="text" id="aDesc" placeholder="ex: passagem ônibus" />
+        </div>
+        <div class="fg">
+          <label>Valor (R$)</label>
+          <input type="number" id="aVal" placeholder="0,00" step="0.01" min="0" />
+        </div>
+        <div class="fg">
+          <label>Tipo</label>
+          <select id="aType">
+            <option value="out">Gasto (−)</option>
+            <option value="in">Receita extra (+)</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" onclick="addAvulso()">+ Adicionar</button>
       </div>
     </div>
   </div>
 
-  <!-- SEÇÃO 2: RASTREADOR DE FATURAS -->
+  <!-- LOG -->
   <div class="section">
-    <div class="section-label">Faturas do cartão — acompanhe o aumento</div>
-    <div class="fatura-card">
-      <div style="font-size:.8125rem;color:var(--muted);margin-bottom:1rem;">
-        Toda vez que a fatura do Itaú aumentar, atualize aqui. O impacto no orçamento do Japão é calculado automaticamente.
-      </div>
-      <div class="fatura-grid" id="faturaGrid">
-        <!-- gerado por JS -->
-      </div>
-    </div>
-  </div>
-
-  <!-- SEÇÃO 3: LOG DE MOVIMENTAÇÕES -->
-  <div class="section">
-    <div class="section-label">Histórico de movimentações</div>
+    <div class="section-label">Histórico</div>
     <div class="log-list" id="logList">
       <div class="log-empty">Nenhum gasto registrado ainda.</div>
     </div>
   </div>
 
-  <!-- SEÇÃO 4: LINHA DO TEMPO -->
+  <!-- TIMELINE -->
   <div class="section">
-    <div class="section-label">Linha do tempo — julho a outubro</div>
+    <div class="section-label">Linha do tempo</div>
 
-    <!-- JULHO -->
     <div class="tl-month">
-      <div class="tl-month-header">
-        <span class="tl-month-name">Julho</span>
-        <span class="tl-badge badge-red">mês crítico — Itaú pesado</span>
-      </div>
+      <div class="tl-month-header"><span class="tl-month-name">Julho</span><span class="tl-badge badge-red">crítico</span></div>
       <div class="tl-rows">
-        <div class="tl-row in"><span class="tl-date">01/jul</span><span class="tl-desc">+ Cofrinho + Salário</span><span class="tl-amount in">+ R$ 13.081</span></div>
-        <div class="tl-row out"><span class="tl-date">01/jul</span><span class="tl-desc">− Aluguel + Vivo</span><span class="tl-amount out">− R$ 1.849</span></div>
-        <div class="tl-row out"><span class="tl-date">02/jul</span><span class="tl-desc">− Entrada Itaú (parcelamento)</span><span class="tl-amount out">− R$ 9.000</span></div>
-        <div class="tl-row out"><span class="tl-date">06/jul</span><span class="tl-desc">− Nubank fatura junho</span><span class="tl-amount out">− R$ 532</span></div>
-        <div class="tl-row out"><span class="tl-date">~10/jul</span><span class="tl-desc">− Condomínio</span><span class="tl-amount out">− R$ 1.289</span></div>
-        <div class="tl-row in"><span class="tl-date">15/jul</span><span class="tl-desc">+ Adiantamento</span><span class="tl-amount in">+ R$ 6.190</span></div>
-        <div class="tl-row out"><span class="tl-date">~15/jul</span><span class="tl-desc">− Mercado Pago</span><span class="tl-amount out">− R$ 104</span></div>
+        <div class="tl-row in"><span class="tl-date">01/jul</span><span class="tl-desc">+ Cofrinho + Salário</span><span class="tl-amt in">+ R$ 13.081</span></div>
+        <div class="tl-row out"><span class="tl-date">01/jul</span><span class="tl-desc">− Aluguel + Vivo</span><span class="tl-amt out">− R$ 1.849</span></div>
+        <div class="tl-row out"><span class="tl-date">02/jul</span><span class="tl-desc">− Entrada Itaú (parcelamento)</span><span class="tl-amt out">− R$ 9.000</span></div>
+        <div class="tl-row out"><span class="tl-date">06/jul</span><span class="tl-desc">− Nubank fatura junho</span><span class="tl-amt out">− R$ 532</span></div>
+        <div class="tl-row out"><span class="tl-date">~10/jul</span><span class="tl-desc">− Condomínio</span><span class="tl-amt out">− R$ 1.289</span></div>
+        <div class="tl-row in"><span class="tl-date">15/jul</span><span class="tl-desc">+ Adiantamento</span><span class="tl-amt in">+ R$ 6.190</span></div>
+        <div class="tl-row out"><span class="tl-date">~15/jul</span><span class="tl-desc">− Mercado Pago</span><span class="tl-amt out">− R$ 104</span></div>
       </div>
-      <div class="tl-balance-row"><span class="tl-balance-label">Saldo fim de julho</span><span class="tl-balance-val">R$ 6.497</span></div>
+      <div class="tl-footer"><span class="tl-footer-lbl">Saldo fim de julho</span><span class="tl-footer-val">R$ 6.497</span></div>
     </div>
 
-    <!-- AGOSTO -->
     <div class="tl-month">
-      <div class="tl-month-header">
-        <span class="tl-month-name">Agosto</span>
-        <span class="tl-badge badge-yellow">casa dos pais — recuperação</span>
-      </div>
+      <div class="tl-month-header"><span class="tl-month-name">Agosto</span><span class="tl-badge badge-yellow">recuperação</span></div>
       <div class="tl-rows">
-        <div class="tl-row in"><span class="tl-date">01/ago</span><span class="tl-desc">+ Salário</span><span class="tl-amount in">+ R$ 5.002</span></div>
-        <div class="tl-row out"><span class="tl-date">01/ago</span><span class="tl-desc">− Aluguel + Vivo</span><span class="tl-amount out">− R$ 1.849</span></div>
-        <div class="tl-row out"><span class="tl-date">04/ago</span><span class="tl-desc">− Nubank fatura julho</span><span class="tl-amount out">− R$ 424</span></div>
-        <div class="tl-row out"><span class="tl-date">~10/ago</span><span class="tl-desc">− Condomínio</span><span class="tl-amount out">− R$ 1.289</span></div>
-        <div class="tl-row in"><span class="tl-date">15/ago</span><span class="tl-desc">+ Adiantamento</span><span class="tl-amount in">+ R$ 6.190</span></div>
-        <div class="tl-row highlight"><span class="tl-date">15/ago</span><span class="tl-desc">⚡ Antecipar 4 parcelas Itaú (sem juros)</span><span class="tl-amount out">− R$ 4.645</span></div>
-        <div class="tl-row out"><span class="tl-date">~15/ago</span><span class="tl-desc">− Mercado Pago</span><span class="tl-amount out">− R$ 93</span></div>
+        <div class="tl-row in"><span class="tl-date">01/ago</span><span class="tl-desc">+ Salário</span><span class="tl-amt in">+ R$ 5.002</span></div>
+        <div class="tl-row out"><span class="tl-date">01/ago</span><span class="tl-desc">− Aluguel + Vivo</span><span class="tl-amt out">− R$ 1.849</span></div>
+        <div class="tl-row out"><span class="tl-date">04/ago</span><span class="tl-desc">− Nubank fatura julho</span><span class="tl-amt out">− R$ 424</span></div>
+        <div class="tl-row out"><span class="tl-date">~10/ago</span><span class="tl-desc">− Condomínio</span><span class="tl-amt out">− R$ 1.289</span></div>
+        <div class="tl-row in"><span class="tl-date">15/ago</span><span class="tl-desc">+ Adiantamento</span><span class="tl-amt in">+ R$ 6.190</span></div>
+        <div class="tl-row hl"><span class="tl-date">15/ago</span><span class="tl-desc">⚡ Antecipar parcelas Itaú (sem juros)</span><span class="tl-amt out">− R$ 4.645</span></div>
+        <div class="tl-row out"><span class="tl-date">~15/ago</span><span class="tl-desc">− Mercado Pago</span><span class="tl-amt out">− R$ 93</span></div>
       </div>
-      <div class="tl-balance-row"><span class="tl-balance-label">Saldo fim de agosto</span><span class="tl-balance-val">R$ 9.389</span></div>
+      <div class="tl-footer"><span class="tl-footer-lbl">Saldo fim de agosto</span><span class="tl-footer-val">R$ 9.389</span></div>
     </div>
 
-    <!-- SETEMBRO -->
     <div class="tl-month">
-      <div class="tl-month-header">
-        <span class="tl-month-name">Setembro</span>
-        <span class="tl-badge badge-purple">✈️ mês da viagem</span>
-      </div>
+      <div class="tl-month-header"><span class="tl-month-name">Setembro</span><span class="tl-badge badge-purple">✈️ viagem</span></div>
       <div class="tl-rows">
-        <div class="tl-row in"><span class="tl-date">01/set</span><span class="tl-desc">+ Salário</span><span class="tl-amount in">+ R$ 5.002</span></div>
-        <div class="tl-row out"><span class="tl-date">01/set</span><span class="tl-desc">− Aluguel + Vivo</span><span class="tl-amount out">− R$ 1.849</span></div>
-        <div class="tl-row in"><span class="tl-date">~03/set</span><span class="tl-desc">+ Férias (20 dias + ⅓)</span><span class="tl-amount in">+ R$ 10.166</span></div>
-        <div class="tl-row in"><span class="tl-date">~03/set</span><span class="tl-desc">+ VR (pais devolvem)</span><span class="tl-amount in">+ R$ 2.000</span></div>
-        <div class="tl-row highlight"><span class="tl-date">04/set</span><span class="tl-desc">✈️ EMBARCA — saldo disponível para gastar</span><span class="tl-amount bal">R$ 24.708</span></div>
-        <div class="tl-row out"><span class="tl-date">04/set</span><span class="tl-desc">− Nubank fatura agosto (auto-débito)</span><span class="tl-amount out">− R$ 424</span></div>
-        <div class="tl-row out"><span class="tl-date">~10/set</span><span class="tl-desc">− Condomínio (auto-débito)</span><span class="tl-amount out">− R$ 1.289</span></div>
-        <div class="tl-row out"><span class="tl-date">~13/set</span><span class="tl-desc">− Mercado Pago (auto-débito)</span><span class="tl-amount out">− R$ 93</span></div>
-        <div class="tl-row in"><span class="tl-date">15/set</span><span class="tl-desc">+ Adiantamento reduzido</span><span class="tl-amount in">+ R$ 2.063</span></div>
-        <div class="tl-row out"><span class="tl-date">~16/set</span><span class="tl-desc">− Itaú setembro (gasto corrente)</span><span class="tl-amount out">− R$ 1.500</span></div>
-        <div class="tl-row highlight"><span class="tl-date">22/set</span><span class="tl-desc">🇧🇷 ATERRISSA — saldo ao voltar</span><span class="tl-amount bal">R$ 23.465</span></div>
+        <div class="tl-row in"><span class="tl-date">01/set</span><span class="tl-desc">+ Salário</span><span class="tl-amt in">+ R$ 5.002</span></div>
+        <div class="tl-row out"><span class="tl-date">01/set</span><span class="tl-desc">− Aluguel + Vivo</span><span class="tl-amt out">− R$ 1.849</span></div>
+        <div class="tl-row in"><span class="tl-date">~03/set</span><span class="tl-desc">+ Férias + VR</span><span class="tl-amt in">+ R$ 12.166</span></div>
+        <div class="tl-row hl"><span class="tl-date">04/set</span><span class="tl-desc">✈️ EMBARCA</span><span class="tl-amt bal">R$ 24.708</span></div>
+        <div class="tl-row out"><span class="tl-date">04/set</span><span class="tl-desc">− Nubank fatura agosto</span><span class="tl-amt out">− R$ 424</span></div>
+        <div class="tl-row out"><span class="tl-date">~10/set</span><span class="tl-desc">− Condomínio</span><span class="tl-amt out">− R$ 1.289</span></div>
+        <div class="tl-row out"><span class="tl-date">~13/set</span><span class="tl-desc">− Mercado Pago</span><span class="tl-amt out">− R$ 93</span></div>
+        <div class="tl-row in"><span class="tl-date">15/set</span><span class="tl-desc">+ Adiantamento reduzido</span><span class="tl-amt in">+ R$ 2.063</span></div>
+        <div class="tl-row out"><span class="tl-date">~16/set</span><span class="tl-desc">− Itaú setembro (corrente)</span><span class="tl-amt out">− R$ 1.500</span></div>
+        <div class="tl-row hl"><span class="tl-date">22/set</span><span class="tl-desc">🇧🇷 ATERRISSA</span><span class="tl-amt bal">R$ 23.465</span></div>
       </div>
-      <div class="tl-balance-row"><span class="tl-balance-label">Reservado para outubro</span><span class="tl-balance-val" style="color:var(--yellow)">− R$ 5.194</span></div>
-      <div class="tl-balance-row" style="border-top:none; padding-top:.25rem"><span class="tl-balance-label" style="font-weight:700;color:var(--text)">Livre para gastar no Japão</span><span class="tl-balance-val" style="color:var(--green);font-size:1rem">R$ 16.198</span></div>
+      <div class="tl-footer"><span class="tl-footer-lbl">Reserva outubro</span><span class="tl-footer-val" style="color:var(--yellow)">− R$ 5.194</span></div>
+      <div class="tl-footer" style="border-top:none;padding-top:.2rem"><span class="tl-footer-lbl" style="font-weight:700;color:var(--text)">Base para o Japão</span><span class="tl-footer-val" style="color:var(--green)">R$ 16.198</span></div>
     </div>
 
-    <!-- OUTUBRO -->
     <div class="tl-month">
-      <div class="tl-month-header">
-        <span class="tl-month-name">Outubro</span>
-        <span class="tl-badge badge-green">volta ao normal — cobre sozinho</span>
-      </div>
+      <div class="tl-month-header"><span class="tl-month-name">Outubro</span><span class="tl-badge badge-green">se paga sozinho</span></div>
       <div class="tl-rows">
-        <div class="tl-row in"><span class="tl-date">01/out</span><span class="tl-desc">+ Salário (parcial — férias)</span><span class="tl-amount in">+ R$ 2.700</span></div>
-        <div class="tl-row out"><span class="tl-date">01/out</span><span class="tl-desc">− Aluguel + Vivo</span><span class="tl-amount out">− R$ 1.849</span></div>
-        <div class="tl-row out"><span class="tl-date">~05/out</span><span class="tl-desc">− Nubank fatura setembro</span><span class="tl-amount out">− R$ 328</span></div>
-        <div class="tl-row out"><span class="tl-date">~10/out</span><span class="tl-desc">− Condomínio</span><span class="tl-amount out">− R$ 1.289</span></div>
-        <div class="tl-row in"><span class="tl-date">15/out</span><span class="tl-desc">+ Adiantamento</span><span class="tl-amount in">+ R$ 6.190</span></div>
-        <div class="tl-row out"><span class="tl-date">~16/out</span><span class="tl-desc">− Itaú outubro</span><span class="tl-amount out">− R$ 1.635</span></div>
-        <div class="tl-row out"><span class="tl-date">~16/out</span><span class="tl-desc">− Mercado Pago</span><span class="tl-amount out">− R$ 93</span></div>
+        <div class="tl-row in"><span class="tl-date">01/out</span><span class="tl-desc">+ Salário parcial</span><span class="tl-amt in">+ R$ 2.700</span></div>
+        <div class="tl-row out"><span class="tl-date">01/out</span><span class="tl-desc">− Aluguel + Vivo</span><span class="tl-amt out">− R$ 1.849</span></div>
+        <div class="tl-row out"><span class="tl-date">~05/out</span><span class="tl-desc">− Nubank fatura set</span><span class="tl-amt out">− R$ 328</span></div>
+        <div class="tl-row out"><span class="tl-date">~10/out</span><span class="tl-desc">− Condomínio</span><span class="tl-amt out">− R$ 1.289</span></div>
+        <div class="tl-row in"><span class="tl-date">15/out</span><span class="tl-desc">+ Adiantamento</span><span class="tl-amt in">+ R$ 6.190</span></div>
+        <div class="tl-row out"><span class="tl-date">~16/out</span><span class="tl-desc">− Itaú outubro + Mercado Pago</span><span class="tl-amt out">− R$ 1.728</span></div>
       </div>
-      <div class="tl-balance-row"><span class="tl-balance-label">Outubro se paga sozinho — não precisa reservar do Japão</span><span class="tl-balance-val" style="color:var(--green)">✓</span></div>
+      <div class="tl-footer"><span class="tl-footer-lbl">Outubro coberto pelo salário — nada reservado do Japão</span><span class="tl-footer-val" style="color:var(--green)">✓</span></div>
     </div>
-
   </div>
 
 </main>
 
 <script>
-const BASE_BUDGET = 16198;
-const TRIP_DAYS = 16;
+const BASE = 16198;
+const DAYS = 16;
+const YEN_RATE = 0.034;
 
-// Faturas a rastrear
-const FATURAS = [
-  { id: 'itau_jul', label: 'Itaú Julho', base: 13671.75, vence: '02/jul', color: 'var(--red)' },
-  { id: 'itau_ago', label: 'Itaú Agosto', base: 3666.06, vence: '16/ago', color: 'var(--yellow)' },
-  { id: 'itau_set', label: 'Itaú Setembro', base: 3011.63, vence: '16/set', color: 'var(--yellow)' },
-  { id: 'nubank_jul', label: 'Nubank Julho', base: 423.85, vence: '04/ago', color: 'var(--purple)' },
-  { id: 'nubank_ago', label: 'Nubank Agosto', base: 423.85, vence: '04/set', color: 'var(--purple)' },
-];
-
-const CAT_COLORS = {
-  emergencia: 'var(--red)',
-  fatura: 'var(--yellow)',
-  transporte: 'var(--blue)',
-  alimentacao: 'var(--green)',
-  lazer: 'var(--purple)',
-  outro: 'var(--muted)',
+// Meses em ordem
+const MONTHS = ['jul','ago','set','out','nov','dez'];
+const MONTH_LABELS = { jul:'Julho', ago:'Agosto', set:'Setembro', out:'Outubro', nov:'Novembro', dez:'Dezembro' };
+const MONTH_VENCE = {
+  jul: { itau:'16/jul', nubank:'06/jul' },
+  ago: { itau:'16/ago', nubank:'04/ago' },
+  set: { itau:'16/set', nubank:'04/set' },
+  out: { itau:'16/out', nubank:'05/out' },
 };
 
-function load(key, def) {
-  try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : def; }
-  catch { return def; }
-}
-function save(key, val) {
-  try { localStorage.setItem(key, JSON.stringify(val)); } catch {}
+// Faturas base (o que já estava planejado, sem os extras do usuário)
+const FATURA_BASE = {
+  jul: { label:'Itaú Julho',    base: 13671.75, vence:'16/jul', color:'var(--red)' },
+  ago: { label:'Itaú Agosto',   base: 3666.06,  vence:'16/ago', color:'var(--yellow)' },
+  set: { label:'Itaú Setembro', base: 3011.63,  vence:'16/set', color:'var(--yellow)' },
+  out: { label:'Itaú Outubro',  base: 1635.22,  vence:'16/out', color:'var(--green)' },
+};
+
+function load(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } }
+function save(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+
+let entries = load('jp2_entries', []); // todas as entradas (parceladas + avulsas)
+
+// Calcula impacto por mês
+function impactByMonth() {
+  const m = {};
+  entries.forEach(e => {
+    if (e.kind === 'parcela') {
+      e.parcelas.forEach(p => {
+        m[p.mes] = (m[p.mes] || []);
+        m[p.mes].push({ desc: e.desc + (e.qtd > 1 ? ` (${p.num}/${e.qtd})` : ''), val: p.val, id: e.id });
+      });
+    }
+  });
+  return m;
 }
 
-let expenses = load('jp_expenses', []);
-let faturaValues = load('jp_faturas', {});
-
-function totalExpenses() {
-  return expenses.reduce((s, e) => e.type === 'out' ? s + e.val : s - e.val, 0);
-}
-
-function totalFaturaExtra() {
-  return FATURAS.reduce((s, f) => {
-    const current = faturaValues[f.id] ?? f.base;
-    const diff = current - f.base;
-    return diff > 0 ? s + diff : s;
+// Calcula impacto total no orçamento do Japão
+function totalImpact() {
+  return entries.reduce((s, e) => {
+    if (e.kind === 'parcela') return s + e.total;
+    if (e.kind === 'avulso') return e.type === 'out' ? s + e.val : s - e.val;
+    return s;
   }, 0);
 }
 
-function currentBudget() {
-  return BASE_BUDGET - totalExpenses() - totalFaturaExtra();
+function currentBudget() { return BASE - totalImpact(); }
+
+function fmt(n, abs=true) {
+  const v = abs ? Math.abs(n) : n;
+  return 'R$ ' + v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+function fmtYen(r) {
+  return '¥ ' + Math.round(r / YEN_RATE).toLocaleString('pt-BR');
 }
 
-function fmt(n) {
-  return 'R$ ' + Math.abs(n).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+// Próximo mês
+function nextMonth(mes) {
+  const i = MONTHS.indexOf(mes);
+  return i < MONTHS.length - 1 ? MONTHS[i + 1] : null;
+}
+
+// Gera lista de parcelas
+function buildParcelas(total, qtd, firstMes) {
+  const perParcela = total / qtd;
+  const result = [];
+  let mes = firstMes;
+  for (let i = 1; i <= qtd; i++) {
+    result.push({ num: i, mes, val: perParcela });
+    mes = nextMonth(mes) || mes;
+  }
+  return result;
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', (i === 0 && tab === 'parcela') || (i === 1 && tab === 'avulso')));
+  document.getElementById('tabParcela').classList.toggle('active', tab === 'parcela');
+  document.getElementById('tabAvulso').classList.toggle('active', tab === 'avulso');
+}
+
+function previewParcela() {
+  const total = parseFloat(document.getElementById('pTotal').value);
+  const qtd = parseInt(document.getElementById('pQtd').value);
+  const mes = document.getElementById('pMes').value;
+  const preview = document.getElementById('parcelaPreview');
+  const rows = document.getElementById('parcelaRows');
+  if (!total || total <= 0) { preview.classList.remove('show'); return; }
+  const parcelas = buildParcelas(total, qtd, mes);
+  rows.innerHTML = parcelas.map(p =>
+    `<div class="parcela-row"><span class="pm">${MONTH_LABELS[p.mes] || p.mes} — parcela ${p.num}/${qtd}</span><span class="pv">${fmt(p.val)}</span></div>`
+  ).join('');
+  preview.classList.add('show');
+}
+
+function addParcela() {
+  const desc = document.getElementById('pDesc').value.trim();
+  const total = parseFloat(document.getElementById('pTotal').value);
+  const qtd = parseInt(document.getElementById('pQtd').value);
+  const mes = document.getElementById('pMes').value;
+  if (!desc || !total || total <= 0) { alert('Preenche descrição e valor.'); return; }
+  const parcelas = buildParcelas(total, qtd, mes);
+  entries.push({ id: Date.now().toString(), kind: 'parcela', desc, total, qtd, parcelas, date: new Date().toLocaleDateString('pt-BR') });
+  save('jp2_entries', entries);
+  document.getElementById('pDesc').value = '';
+  document.getElementById('pTotal').value = '';
+  document.getElementById('parcelaPreview').classList.remove('show');
+  updateUI();
+}
+
+function addAvulso() {
+  const desc = document.getElementById('aDesc').value.trim();
+  const val = parseFloat(document.getElementById('aVal').value);
+  const type = document.getElementById('aType').value;
+  if (!desc || !val || val <= 0) { alert('Preenche descrição e valor.'); return; }
+  entries.push({ id: Date.now().toString(), kind: 'avulso', desc, val, type, date: new Date().toLocaleDateString('pt-BR') });
+  save('jp2_entries', entries);
+  document.getElementById('aDesc').value = '';
+  document.getElementById('aVal').value = '';
+  updateUI();
+}
+
+function removeEntry(id) {
+  entries = entries.filter(e => e.id !== id);
+  save('jp2_entries', entries);
+  updateUI();
 }
 
 function updateUI() {
   const budget = currentBudget();
-  const pct = Math.max(0, Math.min(100, (budget / BASE_BUDGET) * 100));
-  const perDay = budget / TRIP_DAYS;
+  const impact = totalImpact();
+  const pct = Math.max(0, Math.min(100, (budget / BASE) * 100));
+  const color = budget > 10000 ? 'var(--green)' : budget > 5000 ? 'var(--yellow)' : 'var(--red)';
+  const barColor = budget > 10000 ? 'linear-gradient(90deg,var(--green),#22d3ee)' : budget > 5000 ? 'linear-gradient(90deg,var(--yellow),var(--gold))' : 'linear-gradient(90deg,var(--red),#fb923c)';
 
-  document.getElementById('headerBudget').textContent = fmt(budget);
-  document.getElementById('budgetMain').textContent = fmt(budget);
-  document.getElementById('budgetMain').style.color = budget > 10000 ? 'var(--green)' : budget > 5000 ? 'var(--yellow)' : 'var(--red)';
-  document.getElementById('budgetPercent').textContent = pct.toFixed(0) + '%';
+  document.getElementById('hBudget').textContent = fmt(budget);
+  document.getElementById('budgetBig').textContent = fmt(budget);
+  document.getElementById('budgetBig').style.color = color;
+  document.getElementById('budgetPct').textContent = pct.toFixed(0) + '%';
+  document.getElementById('budgetPct').style.color = color;
   document.getElementById('budgetBar').style.width = pct + '%';
-  document.getElementById('statSpent').textContent = fmt(totalExpenses() + totalFaturaExtra());
-  document.getElementById('statDays').textContent = fmt(perDay) + '/dia';
+  document.getElementById('budgetBar').style.background = barColor;
+  document.getElementById('sTotalImpact').textContent = fmt(impact);
+  document.getElementById('sPerDay').textContent = fmt(budget / DAYS) + '/dia';
+  document.getElementById('sYen').textContent = fmtYen(budget);
+
+  // Faturas
+  const byMonth = impactByMonth();
+  const grid = document.getElementById('faturasGrid');
+  grid.innerHTML = Object.entries(FATURA_BASE).map(([mes, f]) => {
+    const extras = byMonth[mes] || [];
+    const extraTotal = extras.reduce((s, i) => s + i.val, 0);
+    const total = f.base + extraTotal;
+    const diff = extraTotal;
+    const diffStr = diff > 0 ? `<span style="color:var(--red)">+${fmt(diff)} adicionado</span>` :
+                    diff < 0 ? `<span style="color:var(--green)">${fmt(diff)} removido</span>` :
+                    `<span style="color:var(--hint)">sem alteração</span>`;
+    const breakdown = extras.length > 0 ? `
+      <div class="fatura-breakdown">
+        <div class="fatura-item-line"><span class="fatura-item-name" style="color:var(--muted)">Base planejada</span><span class="fatura-item-val" style="color:var(--muted)">${fmt(f.base)}</span></div>
+        ${extras.map(i => `<div class="fatura-item-line"><span class="fatura-item-name">${i.desc}</span><span class="fatura-item-val">+${fmt(i.val)}</span></div>`).join('')}
+      </div>` : '';
+    return `
+      <div class="fatura-card">
+        <div class="fatura-month">${f.label}</div>
+        <div class="fatura-total" style="color:${f.color}">${fmt(total)}</div>
+        <div class="fatura-vence">vence ${f.vence}</div>
+        <div class="fatura-base">base: ${fmt(f.base)}</div>
+        <div class="fatura-diff">${diffStr}</div>
+        ${breakdown}
+      </div>`;
+  }).join('');
 
   // Log
   const logEl = document.getElementById('logList');
-  if (expenses.length === 0) {
+  if (entries.length === 0) {
     logEl.innerHTML = '<div class="log-empty">Nenhum gasto registrado ainda.</div>';
-  } else {
-    logEl.innerHTML = [...expenses].reverse().map(e => `
-      <div class="log-item">
-        <div class="log-dot" style="background:${CAT_COLORS[e.cat] || 'var(--muted)'}"></div>
-        <div style="flex:1">
-          <div class="log-desc">${e.desc}</div>
-          <div class="log-cat">${e.cat} · ${e.date}</div>
-        </div>
-        <div class="log-val ${e.type === 'out' ? 'neg' : 'pos'}">${e.type === 'out' ? '−' : '+'} ${fmt(e.val)}</div>
-        <button class="log-del" onclick="removeExpense('${e.id}')">✕</button>
-      </div>
-    `).join('');
-  }
-
-  // Faturas
-  const grid = document.getElementById('faturaGrid');
-  grid.innerHTML = FATURAS.map(f => {
-    const current = faturaValues[f.id] ?? f.base;
-    const diff = current - f.base;
-    const diffStr = diff > 0 ? `<span style="color:var(--red)">+ ${fmt(diff)} do esperado</span>` :
-                    diff < 0 ? `<span style="color:var(--green)">${fmt(diff)} do esperado</span>` :
-                    `<span style="color:var(--muted)">sem alteração</span>`;
-    return `
-      <div class="fatura-item">
-        <div class="fatura-month">${f.label}</div>
-        <div class="fatura-val" style="color:${f.color}">${fmt(current)}</div>
-        <div style="font-size:10px;color:var(--muted);margin-bottom:.5rem">vence ${f.vence}</div>
-        <div class="fatura-input-wrap">
-          <span>R$</span>
-          <input class="fatura-input" type="number" step="0.01"
-            value="${current.toFixed(2)}"
-            onchange="updateFatura('${f.id}', this.value)"
-            placeholder="${f.base.toFixed(2)}" />
-        </div>
-        <div class="fatura-diff">${diffStr}</div>
-      </div>
-    `;
-  }).join('');
-}
-
-function addExpense() {
-  const type = document.getElementById('expType').value;
-  const desc = document.getElementById('expDesc').value.trim();
-  const val = parseFloat(document.getElementById('expVal').value);
-  const cat = document.getElementById('expCat').value;
-
-  if (!desc || isNaN(val) || val <= 0) {
-    alert('Preenche a descrição e um valor válido.');
     return;
   }
-
-  expenses.push({
-    id: Date.now().toString(),
-    type, desc, val, cat,
-    date: new Date().toLocaleDateString('pt-BR')
-  });
-
-  save('jp_expenses', expenses);
-  document.getElementById('expDesc').value = '';
-  document.getElementById('expVal').value = '';
-  updateUI();
-}
-
-function removeExpense(id) {
-  expenses = expenses.filter(e => e.id !== id);
-  save('jp_expenses', expenses);
-  updateUI();
-}
-
-function updateFatura(id, val) {
-  const n = parseFloat(val);
-  if (!isNaN(n) && n >= 0) {
-    faturaValues[id] = n;
-    save('jp_faturas', faturaValues);
-    updateUI();
-  }
+  logEl.innerHTML = [...entries].reverse().map(e => {
+    if (e.kind === 'parcela') {
+      const meses = e.parcelas.map(p => MONTH_LABELS[p.mes] || p.mes).join(', ');
+      return `
+        <div class="log-item">
+          <div class="log-dot" style="background:var(--yellow)"></div>
+          <div class="log-body">
+            <div class="log-name">${e.desc}</div>
+            <div class="log-meta">${e.qtd}x de ${fmt(e.total / e.qtd)} · ${e.date} · faturas: ${meses}</div>
+          </div>
+          <div class="log-right">
+            <div class="log-val neg">− ${fmt(e.total)}</div>
+            <div class="log-impact">total parcelado</div>
+          </div>
+          <button class="log-del" onclick="removeEntry('${e.id}')">✕</button>
+        </div>`;
+    } else {
+      return `
+        <div class="log-item">
+          <div class="log-dot" style="background:${e.type === 'out' ? 'var(--red)' : 'var(--green)'}"></div>
+          <div class="log-body">
+            <div class="log-name">${e.desc}</div>
+            <div class="log-meta">débito/pix · ${e.date}</div>
+          </div>
+          <div class="log-right">
+            <div class="log-val ${e.type === 'out' ? 'neg' : 'pos'}">${e.type === 'out' ? '−' : '+'} ${fmt(e.val)}</div>
+            <div class="log-impact">fora do cartão</div>
+          </div>
+          <button class="log-del" onclick="removeEntry('${e.id}')">✕</button>
+        </div>`;
+    }
+  }).join('');
 }
 
 updateUI();
